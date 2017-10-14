@@ -14,7 +14,6 @@ Race participants can:
 - Confirm their registration on the race page
 
 Race managers can: 
-- A user account must be created
 - Create a race
 - Edit/Delete a race they own
 - Edit/Delete a participant in a race they own
