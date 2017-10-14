@@ -1,0 +1,128 @@
+<div class="container">
+  <div class="row">
+      <a [routerLink]="['/races/' + id ]" href="#" class="btn btn-link"><i class="fa  fa-arrow-circle-o-left"></i> Back to Race</a>
+  </div>
+  <h2 class="page-header">Race Registration</h2>
+  <form novalidate #f="ngForm" (ngSubmit)="onNewRacerSubmit(f)" class="mb-5">
+      <div class="form-group">
+        <label>First Name</label>
+        <input 
+          type="text" 
+          class="form-control"
+          [(ngModel)]="racer.firstName" 
+          name="firstName"  
+          #firstName="ngModel"
+          minlength="2"
+          required
+          placeholder="First Name"        
+          >
+        <div *ngIf="firstName.errors?.required && firstName.touched" class="alert alert-danger">
+          First name is required
+        </div>
+        <div *ngIf="firstName.errors?.minlength && firstName.touched" class="alert alert-danger">
+          First name should be greater than 2 characters
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input 
+        type="text" 
+        class="form-control"
+        [(ngModel)]="racer.lastName" 
+        name="lastName"  
+        #lastName="ngModel"
+        required
+        minlength="2"
+        placeholder="Last Name"        
+        >
+        <div *ngIf="lastName.errors?.required && lastName.touched" class="alert alert-danger">
+          Last name is required
+        </div>
+        <div *ngIf="lastName.errors?.minlength && lastName.touched" class="alert alert-danger">
+          Last name should be greater than 2 characters
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Age</label>
+        <input 
+        type="number" 
+        class="form-control"
+        [(ngModel)]="racer.age" 
+        name="age"  
+        #age="ngModel"
+        required
+        placeholder="Age"        
+        >
+        <div *ngIf="age.errors?.required && age.touched" class="alert alert-danger">
+          Age is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Gender</label>
+        <input 
+        type="text" 
+        class="form-control"
+        [(ngModel)]="racer.gender" 
+        name="gender"  
+        #gender="ngModel"
+        required
+        placeholder="Gender"        
+        >
+        <div *ngIf="gender.errors?.required && gender.touched" class="alert alert-danger">
+          Gender is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input 
+        type="email" 
+        class="form-control"
+        [(ngModel)]="racer.email" 
+        name="email"  
+        #email="ngModel"
+        required
+        placeholder="Enter a valid email address"        
+        >
+        <div *ngIf="email.errors?.required && email.touched" class="alert alert-danger">
+          Email is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input 
+        type="number" 
+        class="form-control"
+        [(ngModel)]="racer.phone" 
+        name="phone"  
+        #phone="ngModel"
+        placeholder="##########"        
+        >
+      </div>
+      <div class="form-group">
+        <label>Hometown</label>
+        <input 
+        type="text" 
+        class="form-control"
+        [(ngModel)]="racer.hometown" 
+        name="hometown"  
+        #hometown="ngModel"
+        minlength="2"
+        placeholder="Hometown"        
+        >
+        <div *ngIf="hometown.errors?.minlength && hometown.touched" class="alert alert-danger">
+            Hometown should be greater than 2 characters
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Boat Class</label>
+        <select 
+        class="form-control" 
+        name="class"
+        [(ngModel)]="racer.class">
+        <option *ngFor="let boat of boatClass" [ngValue]="boat">{{boat}}</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" value="Submit"><i class="fa fa-check" aria-hidden="true"></i> Submit</button>          
+      <a class="btn btn-secondary" [routerLink]="['/races/' + this.id]" role="button"><i class="fa fa-times" aria-hidden="true"></i> Cancel</a>
+    </form>
+</div>

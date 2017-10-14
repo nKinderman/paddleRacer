@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <h2 class="col-md-6 page-header">Dashboard</h2>
+        <div class="col-md-6">
+            <a class="btn btn-secondary pull-right nav-link" (click)="onLogoutClick()" href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+        </div>
+    </div>                              
+    <hr>
+    <div class="row">
+        <div class="col-md-3 profile-right">
+                <h4 class="h4">Profile</h4>
+                <hr>
+            <div class="card border-light mb-3" >
+                <div class="card-body">
+                    <p class="card-text"><span class="text-muted">Name: &nbsp;</span>{{user.name}}</p>
+                    <p class="card-text"><span class="text-muted">Username: &nbsp;</span>{{user.username}}</p>
+                    <p class="card-text"><span class="text-muted">Email: &nbsp;</span>{{user.email}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="h4">Your Races</div>
+                </div>
+                <div class="col-md-6">
+                    <a class="btn btn-primary pull-right" [routerLink]="['/races/new']" role="button"><i class="fa fa-plus" aria-hidden="true"></i> Create New Race</a>                        
+                </div>
+            </div>
+            
+            <div class="row text-center mt-4" style="height: 400px;" *ngIf="myRaces.length > 0; else other">
+                <div class="col-md-4 col-sm 6 d-flex align-items-stretch h-100" *ngFor="let myRace of myRaces">
+                    <div class="card mb-3" style="width: 100%;" >
+                        <img class="card-img-top image" src="{{ myRace.image }}" style="padding: 10px;" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ myRace.name }}</h4>
+                            <p class="card-text">{{ myRace.date }} <br>{{ myRace.location }}</p>
+                            <div class="card-footer footer">
+                                <a class="btn btn-secondary" [routerLink]="['/races', myRace._id]" role="button"><i class="fa fa-info" aria-hidden="true"></i> More Info</a>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #other><br>You have no races yet.</ng-template>                
+        </div>
+    </div>
+</div>

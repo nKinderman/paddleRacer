@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css?family=Alfa+Slab+One");
+
+.title {
+  font-family: 'Alfa Slab One', Arial;
+  font-size: 8vmin;
+}
+
+::ng-deep #level{
+  z-index: 1;
+  position: relative;
+}
+
+::ng-deep .slideshow { 
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+::ng-deep .slideshow li { 
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 0;
+  animation: imageAnimation 36s linear infinite; 
+}
+
+::ng-deep li.one { 
+  background-image: url(../../../assets/images/toRight.jpg) 
+}
+::ng-deep li.two { 
+  background-image: url(../../../assets/images/toBottom.jpg);
+  animation-delay: 9s; 
+}
+::ng-deep li.three { 
+  background-image: url(../../../assets/images/toLeft.jpg);
+  animation-delay: 18s; 
+}
+::ng-deep li.four { 
+  background-image: url(../../../assets/images/toTop.jpg);
+  animation-delay: 27s; 
+}
+
+@keyframes imageAnimation { 
+  0% { 
+    opacity: 0; 
+    animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  20% {
+    opacity: 1
+  }
+  30% {
+    opacity: 0
+  }
+}

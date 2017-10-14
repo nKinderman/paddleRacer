@@ -1,0 +1,17 @@
+.profile-right {
+    border-right: 1px solid #eee;
+}
+
+.image {
+    
+    height: 175px;
+    object-fit: cover;
+}
+
+.footer {
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+ }
+

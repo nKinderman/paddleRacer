@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row" *ngIf="authService.loggedIn(); else guest">
+    <a [routerLink]="['/dashboard']" href="#" class="btn btn-link"><i class="fa  fa-arrow-circle-o-left"></i> Back to Dashboard</a>
+  </div>
+    <ng-template #guest><a [routerLink]="['/races']" href="#" class="btn btn-link">
+      <i class="fa  fa-arrow-circle-o-left"></i> Back to Races</a>
+    </ng-template>
+  <div class="row mb-4" *ngIf="race">
+    <div class="col-md-6">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h4 class="card-title">{{ race.name }}</h4>
+          <h6 class="card-subtitle mb-2 text-muted">{{ race.date }}</h6>
+          <hr>
+          <p class="card-text"><span class="text-muted">Location: 	&nbsp;</span>{{ race.location }}</p>
+          <p class="card-text"><span class="text-muted">Organized by: 	&nbsp;</span>{{ race.author.username }}</p>
+          <p class="card-text"><span class="text-muted">Description: 	&nbsp;</span>{{ race.description }}</p>
+          <p class="card-text"><span class="text-muted">Registration fee: 	&nbsp;</span>{{ race.cost | currency:"USD":true }}</p>
+          <a [routerLink]="['/races/' + id +'/racers/new']" class="btn btn-primary mb-1" href="#" role="button"><i class="fa fa-user-plus" aria-hidden="true"></i> Race Registration</a>
+          <span *ngIf="authService.loggedIn()">
+            <a *ngIf="authService.ownRace(race.author.id)" [routerLink]="['/races/' + id +'/edit']" class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+            <button *ngIf="authService.ownRace(race.author.id)" (click)="onDeleteRaceSubmit()" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+          </span>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+      <img src="{{ race.image }}" alt="{{race.name }}" class="img-fluid">
+    </div>
+  </div>
+  
+  <div class="row mb-4 mt-4" >
+    <div class="col md-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Registration Confirmation</h4>
+          <table class="table table-responsive">
+              <thead class="thead-default">
+                <tr>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Class</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody *ngIf="race.racers.length > 0; else noRacers">
+                <tr *ngFor="let racer of race.racers">
+                  <td>{{ racer.firstName }}</td>
+                  <td>{{ racer.lastName }}</td>
+                  <td>{{ racer.class }}</td>
+                  <td>{{ racer.age }}</td>
+                  <td>{{ racer.gender }}</td>
+                  <td *ngIf="authService.loggedIn()">
+                    <a *ngIf="authService.ownRace(race.author.id)"  [routerLink]="['/races/' + id +'/racers/' + racer._id + '/edit']" class="btn btn-warning btn-sm mb-1" ><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                    <button *ngIf="authService.ownRace(race.author.id)"  (click)="onDeleteRacerSubmit(racer._id)" type="button" class="btn btn-danger btn-sm mb-1"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>                    
+                  </td>
+                </tr>
+              </tbody>      
+              <ng-template #noRacers><br>There are no registered racers.</ng-template>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+</div>

@@ -1,0 +1,16 @@
+::ng-deep #level{
+    z-index: 1;
+    position: relative;
+  }
+
+  @import url("https://fonts.googleapis.com/css?family=Alfa+Slab+One");
+  
+  .title {
+    font-family: 'Alfa Slab One', cursive;
+    font-size: 150%;
+    color: white;
+    pointer-events: none;
+    cursor: default;
+  }
+
+

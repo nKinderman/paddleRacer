@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="page-header">Browse Races</h2>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-primary pull-right" [routerLink]="['/races/new']" role="button"><i class="fa fa-plus" aria-hidden="true"></i> Create New Race</a>
+        </div>
+    </div>
+    <hr>
+    <div class="row text-center mt-4" style="height: 400px;">
+        <div class="col-md-3 col-sm 6 d-flex align-items-stretch h-100" *ngFor="let race of races">
+            <div class="card mb-3" style="width: 100%;">
+                <div>
+                    <img class="card-img-top image" src="{{ race.image }}" style="padding: 10px;" alt="Card image cap">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ race.name }}</h4>
+                    <p class="card-text">{{ race.date }} <br>{{ race.location }}</p>
+                    <div class="card-footer footer">
+                        <a class="btn btn-secondary" [routerLink]="['/races', race._id]" role="button"><i class="fa fa-info" aria-hidden="true"></i> More Info</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
