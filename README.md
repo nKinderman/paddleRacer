@@ -1,6 +1,4 @@
 # paddleRacer
-A paddling themed event listing/registration application built with the MEAN stack
-
 What is PaddleRacer?
 
 PaddleRacer is an event listing & registration demo application for kayak/canoe/SUP races. 
